@@ -38,13 +38,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search
-          address={this.state.address}
-          handleAddressChange={this.onAddressChange}
-        />
-        <button onClick={this.getLocation} disabled={this.state.address === ""}>
-          Get Long
-        </button>
+        <div className="s">
+          <Search
+            address={this.state.address}
+            handleAddressChange={this.onAddressChange}
+          />
+          <button
+            onClick={this.getLocation}
+            disabled={this.state.address === ""}
+          >
+            Get Long
+          </button>
+        </div>
         <Weather address={this.state.formatted} latlng={this.state.lat_lng} />
       </div>
     );
