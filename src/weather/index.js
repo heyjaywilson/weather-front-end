@@ -34,10 +34,14 @@ class Weather extends Component {
       });
     });
   }
+  /* componentDidMount() {
+    let latlng = this.props.latlng;
+    this.getDailyWeather(latlng);
+  } */
   render() {
     return (
       <div>
-        <h1>Your weather for {this.props.address}</h1>
+        <h1>Showing Weather for {this.props.address}</h1>
         <button
           onClick={() => {
             this.getCurrentWeather(this.props.latlng);
@@ -52,6 +56,7 @@ class Weather extends Component {
         >
           Daily Forecast
         </button>
+        <div>{this.state.daily.summary}</div>
       </div>
     );
   }
