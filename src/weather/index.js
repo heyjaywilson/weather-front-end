@@ -40,7 +40,7 @@ class Weather extends Component {
   } */
   render() {
     return (
-      <div>
+      <div className="m">
         <h1>Showing Weather for {this.props.address}</h1>
         <button
           onClick={() => {

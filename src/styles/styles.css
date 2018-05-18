@@ -1,0 +1,14 @@
+.App {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "s m m";
+}
+
+.s {
+  grid-area: s;
+  padding: 1vh 1vw;
+}
+.m {
+  grid-area: m;
+  padding: 1vh 1vw;
+}
