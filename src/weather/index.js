@@ -49,7 +49,6 @@ class Weather extends Component {
         <div>
           {this.state.current.summary}
           <canvas id="icon1" width="100" height="100" />
-          {Skycon.play()}
         </div>
         <button
           onClick={() => {
