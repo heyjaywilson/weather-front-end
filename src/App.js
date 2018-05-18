@@ -31,7 +31,6 @@ class App extends Component {
           data.results[0].geometry.location.lng,
         formatted: data.results[0].formatted_address
       });
-      console.log(this.state);
     });
   }
 
@@ -47,7 +46,7 @@ class App extends Component {
             onClick={this.getLocation}
             disabled={this.state.address === ""}
           >
-            Get Long
+            Get weather
           </button>
         </div>
         <Weather address={this.state.formatted} latlng={this.state.lat_lng} />

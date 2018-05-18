@@ -36,12 +36,13 @@ class Weather extends Component {
   }
   /* componentDidMount() {
     let latlng = this.props.latlng;
-    this.getDailyWeather(latlng);
+    this.getCurrentWeather(latlng);
   } */
   render() {
     return (
       <div className="m">
         <h1>Showing Weather for {this.props.address}</h1>
+        <div>{this.state.current.summary}</div>
         <button
           onClick={() => {
             this.getCurrentWeather(this.props.latlng);
@@ -56,7 +57,6 @@ class Weather extends Component {
         >
           Daily Forecast
         </button>
-        <div>{this.state.daily.summary}</div>
       </div>
     );
   }

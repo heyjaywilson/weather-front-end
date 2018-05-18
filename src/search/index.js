@@ -13,12 +13,13 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <h1>Weather Search</h1>
         <form onSubmit={this.handleSubmit}>
+          <label>Location </label>
           <input
             type="text"
             value={this.props.address}
             onChange={this.handleAddressChange}
+            placeholder="809 6th st blanco, tx"
           />
         </form>
       </div>
