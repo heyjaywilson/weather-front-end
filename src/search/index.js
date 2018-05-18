@@ -14,7 +14,8 @@ class Search extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>Location </label>
+          <label>Address</label>
+          <br />
           <input
             type="text"
             value={this.props.address}

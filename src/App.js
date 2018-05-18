@@ -31,6 +31,7 @@ class App extends Component {
           data.results[0].geometry.location.lng,
         formatted: data.results[0].formatted_address
       });
+      console.log(this.state);
     });
   }
 
@@ -43,6 +44,7 @@ class App extends Component {
             handleAddressChange={this.onAddressChange}
           />
           <button
+            className="bttn-small"
             onClick={this.getLocation}
             disabled={this.state.address === ""}
           >
@@ -50,7 +52,7 @@ class App extends Component {
           </button>
         </div>
         <Weather address={this.state.formatted} latlng={this.state.lat_lng} />
-        <footer>
+        <footer className="f">
           <a
             href="https://darksky.net/poweredby/"
             target="_blank"

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Skycons } from "../helpers/skycons";
+// import { Skycons } from "../helpers/skycons";
+import Current from "./current";
+import HighLowTemp from "./current/highlowtemp";
 
 axios.defaults.baseURL = "http://0.0.0.0:3001/";
-const Skycon = new Skycons();
+// const Skycon = new Skycons();
 
 class Weather extends Component {
   constructor(props) {
@@ -19,7 +21,6 @@ class Weather extends Component {
     axios
       .get("/api/currenttemp/" + latlng)
       .then(response => {
-        console.log(response.data);
         this.setState({
           current: response.data
         });
@@ -31,39 +32,34 @@ class Weather extends Component {
 
   getDailyWeather(latlng) {
     axios.get("api/daily/" + latlng).then(response => {
-      console.log(response.data);
       this.setState({
         daily: response.data
       });
     });
   }
   componentDidMount() {
-    /* let latlng = this.props.latlng;
-    this.getCurrentWeather(latlng); */
-    Skycon.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT);
+    let latlng = this.props.latlng;
+    this.getCurrentWeather(latlng);
+    this.getDailyWeather(latlng);
   }
   render() {
     return (
-      <div className="m">
-        <h1>Showing Weather for {this.props.address}</h1>
-        <div>
-          {this.state.current.summary}
-          <canvas id="icon1" width="100" height="100" />
+      <div className="m weather">
+        <div className="w">
+          <Current
+            temp={this.state.current.apparentTemperature}
+            summary={this.state.current.summary}
+          />
+          <div className="bttn-group">
+            <button className="bttn-lrg">SHOW MORE DETAILS</button>
+            <button className="bttn-lrg">SHOW HOURLY FORECAST</button>
+            <button className="bttn-lrg">SHOW WEEKLY FORECAST</button>
+          </div>
         </div>
-        <button
-          onClick={() => {
-            this.getCurrentWeather(this.props.latlng);
-          }}
-        >
-          Right Now
-        </button>
-        <button
-          onClick={() => {
-            this.getDailyWeather(this.props.latlng);
-          }}
-        >
-          Daily Forecast
-        </button>
+        <div className="a">
+          <div>{this.props.address}</div>
+          <HighLowTemp data={this.state.daily.data} />
+        </div>
       </div>
     );
   }
