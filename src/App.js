@@ -50,6 +50,15 @@ class App extends Component {
           </button>
         </div>
         <Weather address={this.state.formatted} latlng={this.state.lat_lng} />
+        <footer>
+          <a
+            href="https://darksky.net/poweredby/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Powered by Darksky.net
+          </a>
+        </footer>
       </div>
     );
   }

@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Skycons } from "../helpers/skycons";
 
 axios.defaults.baseURL = "http://0.0.0.0:3001/";
+const Skycon = new Skycons();
 
 class Weather extends Component {
   constructor(props) {
     super(props);
     this.state = {
       current: "",
-      daily: ""
+      daily: "",
+      icon: ""
     };
   }
 
@@ -34,15 +37,20 @@ class Weather extends Component {
       });
     });
   }
-  /* componentDidMount() {
-    let latlng = this.props.latlng;
-    this.getCurrentWeather(latlng);
-  } */
+  componentDidMount() {
+    /* let latlng = this.props.latlng;
+    this.getCurrentWeather(latlng); */
+    Skycon.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT);
+  }
   render() {
     return (
       <div className="m">
         <h1>Showing Weather for {this.props.address}</h1>
-        <div>{this.state.current.summary}</div>
+        <div>
+          {this.state.current.summary}
+          <canvas id="icon1" width="100" height="100" />
+          {Skycon.play()}
+        </div>
         <button
           onClick={() => {
             this.getCurrentWeather(this.props.latlng);
