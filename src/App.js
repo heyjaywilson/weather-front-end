@@ -24,6 +24,7 @@ class App extends Component {
   getLocation() {
     geocoder.geocode(this.state.address, (error, data) => {
       console.log(data.results[0].geometry);
+      let string = data.results[0].geometry.location.lat;
       this.setState({
         lat_lng:
           data.results[0].geometry.location.lat +

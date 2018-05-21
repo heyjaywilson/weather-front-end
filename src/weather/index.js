@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import { Skycons } from "../helpers/skycons";
 import Current from "./current";
 import HighLowTemp from "./current/highlowtemp";
+import MoreDetails from "./current/moredetails";
+import HourlyDetails from "./current/hourlydetails";
+import WeeklyForecast from "./current/weeklyforecast";
 
 axios.defaults.baseURL = "http://0.0.0.0:3001/";
-// const Skycon = new Skycons();
 
 class Weather extends Component {
   constructor(props) {
@@ -13,8 +14,9 @@ class Weather extends Component {
     this.state = {
       current: "",
       daily: "",
-      icon: ""
+      show: 0
     };
+    this.show = this.show.bind(this);
   }
 
   getCurrentWeather(latlng) {
@@ -28,6 +30,7 @@ class Weather extends Component {
       .catch(error => {
         console.log(error);
       });
+    console.log(this.state);
   }
 
   getDailyWeather(latlng) {
@@ -36,11 +39,20 @@ class Weather extends Component {
         daily: response.data
       });
     });
+    console.log(this.state);
   }
-  componentDidMount() {
-    let latlng = this.props.latlng;
-    this.getCurrentWeather(latlng);
-    this.getDailyWeather(latlng);
+  componentWillMount() {
+    this.getCurrentWeather(this.props.latlng);
+    this.getDailyWeather(this.props.latlng);
+  }
+  show(num) {
+    if (num === this.state.show) {
+      this.setState({ show: 0 });
+    } else this.setState({ show: num });
+  }
+  componentWillReceiveProps(nextProps) {
+    this.getCurrentWeather(this.props.latlng);
+    this.getDailyWeather(this.props.latlng);
   }
   render() {
     return (
@@ -49,11 +61,33 @@ class Weather extends Component {
           <Current
             temp={this.state.current.apparentTemperature}
             summary={this.state.current.summary}
+            icon={this.state.current.icon}
           />
           <div className="bttn-group">
-            <button className="bttn-lrg">SHOW MORE DETAILS</button>
-            <button className="bttn-lrg">SHOW HOURLY FORECAST</button>
-            <button className="bttn-lrg">SHOW WEEKLY FORECAST</button>
+            <button className="bttn-lrg" onClick={() => this.show(1)}>
+              SHOW MORE DETAILS
+            </button>
+            {this.state.show === 1 ? (
+              <MoreDetails current={this.state.current} />
+            ) : (
+              <span />
+            )}
+            <button className="bttn-lrg" onClick={() => this.show(2)}>
+              SHOW HOURLY FORECAST
+            </button>
+            {this.state.show === 2 ? (
+              <HourlyDetails daily={this.state.daily} />
+            ) : (
+              <span />
+            )}
+            <button className="bttn-lrg" onClick={() => this.show(3)}>
+              SHOW WEEKLY FORECAST
+            </button>
+            {this.state.show === 3 ? (
+              <WeeklyForecast daily={this.state.daily} />
+            ) : (
+              <span />
+            )}
           </div>
         </div>
         <div className="a">
