@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import geocoder from "geocoder";
+//import geocoder from "geocoder";
+import Geocode from "react-geocode";
 import Search from "./search";
 import Weather from "./weather";
+
+Geocode.setApiKey(process.env.GOOGLE_API);
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +26,16 @@ class App extends Component {
   }
 
   getWeather() {
-    geocoder.geocode(
+    Geocode.fromAddress(this.state.address).then(response => {
+      this.setState({
+        lat_lng:
+          response.results[0].geometry.location.lat +
+          "," +
+          response.results[0].geometry.location.lng,
+        formatted: response.results[0].formatted_address
+      });
+    });
+    /* geocoder.geocode(
       this.state.address,
       (error, data) => {
         console.log(data.results);
@@ -37,7 +49,7 @@ class App extends Component {
         });
       },
       { key: process.env.GOOGLE_API }
-    );
+    ); */
   }
 
   componentDidMount() {

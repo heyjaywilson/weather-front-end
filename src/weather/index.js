@@ -30,7 +30,7 @@ class Weather extends Component {
           hourly: response.data.hourly,
           weekly: response.data.daily
         });
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch(error => {
         console.log(error);
