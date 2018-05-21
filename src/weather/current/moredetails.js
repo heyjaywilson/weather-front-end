@@ -3,13 +3,13 @@ import React, { Component } from "react";
 class MoreDetails extends Component {
   render() {
     return (
-      <ul>
-        <li>Wind Speed: {this.props.current.windSpeed}mph</li>
-        <li>
+      <div className="details">
+        <p>Wind Speed: {this.props.current.windSpeed}mph</p>
+        <p>
           Percipitation Probability: {this.props.current.precipProbability}%
-        </li>
-        <li>Visibility: {this.props.current.visibility}mi</li>
-      </ul>
+        </p>
+        <p>Visibility: {this.props.current.visibility}mi</p>
+      </div>
     );
   }
 }

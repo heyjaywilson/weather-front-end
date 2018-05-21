@@ -3,8 +3,8 @@ import axios from "axios";
 import Current from "./current";
 import HighLowTemp from "./current/highlowtemp";
 import MoreDetails from "./current/moredetails";
-import HourlyDetails from "./current/hourlydetails";
-import WeeklyForecast from "./current/weeklyforecast";
+import HourlyDetails from "./hourly";
+import WeeklyForecast from "./weekly";
 
 axios.defaults.baseURL = "http://0.0.0.0:3001/";
 

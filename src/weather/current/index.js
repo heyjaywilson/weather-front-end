@@ -19,7 +19,6 @@ class Current extends Component {
           {this.props.temp} &#8457;
           <canvas id="icon1" width="100" height="100" />
           {Skycon.set("icon1", this.props.icon)}
-          {Skycon.play()}
         </h1>
         <h1>It is {this.props.summary}.</h1>
       </div>
