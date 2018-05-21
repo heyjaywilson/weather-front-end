@@ -68,8 +68,8 @@ input {
 
 .hourly-temps {
 }
-.hour {
-  min-width: 175px;
+.detail {
+  width: 175px;
   padding: 10px;
 }
 .details {

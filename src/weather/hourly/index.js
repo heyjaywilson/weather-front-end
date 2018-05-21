@@ -13,7 +13,7 @@ class HourlyDetails extends Component {
         <div className="details hourly-temps">
           {this.props.hourly.data.map((hour, index) => {
             return (
-              <div className="hour" key={index}>
+              <div className="detail" key={index}>
                 <h4>
                   {this.convertDate(hour.time)}:00 || {hour.summary}
                 </h4>
