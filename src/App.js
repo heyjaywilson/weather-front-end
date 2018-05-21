@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import geocoder from "geocoder";
-import Geocode from "react-geocode";
+import Geocode from "./helpers/geocode";
 import Search from "./search";
 import Weather from "./weather";
 
