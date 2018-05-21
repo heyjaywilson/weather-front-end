@@ -23,17 +23,21 @@ class App extends Component {
   }
 
   getWeather() {
-    geocoder.geocode(this.state.address, (error, data) => {
-      console.log(data.results);
-      // let string = data.results[0].geometry.location.lat;
-      this.setState({
-        lat_lng:
-          data.results[0].geometry.location.lat +
-          "," +
-          data.results[0].geometry.location.lng,
-        formatted: data.results[0].formatted_address
-      });
-    });
+    geocoder.geocode(
+      this.state.address,
+      (error, data) => {
+        console.log(data.results);
+        // let string = data.results[0].geometry.location.lat;
+        this.setState({
+          lat_lng:
+            data.results[0].geometry.location.lat +
+            "," +
+            data.results[0].geometry.location.lng,
+          formatted: data.results[0].formatted_address
+        });
+      },
+      { key: process.env.GOOGLE_API }
+    );
   }
 
   componentDidMount() {
