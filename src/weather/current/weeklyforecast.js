@@ -4,7 +4,7 @@ class WeeklyForecast extends Component {
   render() {
     return (
       <div>
-        <h1>Weekly Forecast</h1>
+        <h1>{this.props.weekly.summary}</h1>
       </div>
     );
   }

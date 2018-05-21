@@ -15,20 +15,11 @@ class Weather extends Component {
       data: "",
       current: "",
       hourly: "",
-      daily: "",
+      weekly: "",
       show: 0
     };
     this.show = this.show.bind(this);
   }
-  setCurrent() {
-    let current = this.state.data.currently;
-    let hourly = this.state.data.hourly;
-    let daily = this.state.data.daily;
-    this.setState({ current: current });
-    this.setState({ hourly: hourly });
-    this.setState({ daily: daily });
-  }
-
   getWeather(latlng) {
     axios
       .get("/api/" + latlng)
@@ -37,7 +28,7 @@ class Weather extends Component {
           data: response.data,
           current: response.data.currently,
           hourly: response.data.hourly,
-          daily: response.data.daily
+          weekly: response.data.daily
         });
         console.log(response.data);
       })
@@ -92,7 +83,7 @@ class Weather extends Component {
               SHOW WEEKLY FORECAST
             </button>
             {this.state.show === 3 ? (
-              <WeeklyForecast daily={this.state.daily} />
+              <WeeklyForecast weekly={this.state.weekly} />
             ) : (
               <span />
             )}
@@ -100,7 +91,7 @@ class Weather extends Component {
         </div>
         <div className="a">
           <div>{this.props.address}</div>
-          <HighLowTemp data={this.state.daily.data} />
+          <HighLowTemp data={this.state.weekly.data} />
         </div>
       </div>
     );

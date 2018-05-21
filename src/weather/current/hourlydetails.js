@@ -4,7 +4,7 @@ class HourlyDetails extends Component {
   render() {
     return (
       <div>
-        <h1>Hourly</h1>
+        <h1>{this.props.hourly.summary}</h1>
       </div>
     );
   }
