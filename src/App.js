@@ -7,24 +7,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: "",
+      address: "809 6th St, Blanco, TX 78606, USA",
       lat_lng: "30.100761,-98.4244279",
       formatted: "809 6th St, Blanco, TX 78606, USA"
     };
     this.onAddressChange = this.onAddressChange.bind(this);
-    this.getLocation = this.getLocation.bind(this);
+    this.getWeather = this.getWeather.bind(this);
   }
 
   onAddressChange(add) {
     this.setState({
       address: add
     });
+    console.log(this.state);
   }
 
-  getLocation() {
+  getWeather() {
     geocoder.geocode(this.state.address, (error, data) => {
-      console.log(data.results[0].geometry);
-      let string = data.results[0].geometry.location.lat;
+      // console.log(data.results[0].geometry);
+      // let string = data.results[0].geometry.location.lat;
       this.setState({
         lat_lng:
           data.results[0].geometry.location.lat +
@@ -32,8 +33,11 @@ class App extends Component {
           data.results[0].geometry.location.lng,
         formatted: data.results[0].formatted_address
       });
-      console.log(this.state);
     });
+  }
+
+  componentDidMount() {
+    this.getWeather();
   }
 
   render() {
@@ -46,7 +50,9 @@ class App extends Component {
           />
           <button
             className="bttn-small"
-            onClick={this.getLocation}
+            onClick={() => {
+              this.getWeather();
+            }}
             disabled={this.state.address === ""}
           >
             Get weather

@@ -12,48 +12,56 @@ class Weather extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: "",
       current: "",
+      hourly: "",
       daily: "",
       show: 0
     };
     this.show = this.show.bind(this);
   }
+  setCurrent() {
+    let current = this.state.data.currently;
+    let hourly = this.state.data.hourly;
+    let daily = this.state.data.daily;
+    this.setState({ current: current });
+    this.setState({ hourly: hourly });
+    this.setState({ daily: daily });
+  }
 
-  getCurrentWeather(latlng) {
+  getWeather(latlng) {
     axios
-      .get("/api/currenttemp/" + latlng)
+      .get("/api/" + latlng)
       .then(response => {
         this.setState({
-          current: response.data
+          data: response.data,
+          current: response.data.currently,
+          hourly: response.data.hourly,
+          daily: response.data.daily
         });
+        console.log(response.data);
       })
       .catch(error => {
         console.log(error);
       });
+    //this.setCurrent();
     console.log(this.state);
   }
 
-  getDailyWeather(latlng) {
-    axios.get("api/daily/" + latlng).then(response => {
-      this.setState({
-        daily: response.data
-      });
-    });
-    console.log(this.state);
-  }
-  componentWillMount() {
-    this.getCurrentWeather(this.props.latlng);
-    this.getDailyWeather(this.props.latlng);
-  }
+  /* componentWillMount() {
+    this.getWeather(this.props.latlng);
+  } */
+
   show(num) {
     if (num === this.state.show) {
       this.setState({ show: 0 });
     } else this.setState({ show: num });
   }
+
   componentWillReceiveProps(nextProps) {
-    this.getCurrentWeather(this.props.latlng);
-    this.getDailyWeather(this.props.latlng);
+    this.getWeather(this.props.latlng);
   }
+
   render() {
     return (
       <div className="m weather">
@@ -76,7 +84,7 @@ class Weather extends Component {
               SHOW HOURLY FORECAST
             </button>
             {this.state.show === 2 ? (
-              <HourlyDetails daily={this.state.daily} />
+              <HourlyDetails hourly={this.state.hourly} />
             ) : (
               <span />
             )}

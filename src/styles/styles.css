@@ -49,6 +49,7 @@ input {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "w a";
+  grid-column-gap: 12px;
 }
 .w {
   grid-area: w;

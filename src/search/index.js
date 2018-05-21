@@ -4,6 +4,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleSubmit = this.handleAddressChange.bind(this);
   }
 
   handleAddressChange(e) {
@@ -13,7 +14,7 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <label>Address</label>
           <br />
           <input
