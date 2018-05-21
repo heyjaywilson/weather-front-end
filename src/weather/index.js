@@ -6,7 +6,7 @@ import MoreDetails from "./current/moredetails";
 import HourlyDetails from "./hourly";
 import WeeklyForecast from "./weekly";
 
-axios.defaults.baseURL = "http://0.0.0.0:3001/";
+axios.defaults.baseURL = "https://ds-weather-mw.herokuapp.com/";
 
 class Weather extends Component {
   constructor(props) {
