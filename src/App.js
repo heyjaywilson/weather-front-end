@@ -24,7 +24,7 @@ class App extends Component {
 
   getWeather() {
     geocoder.geocode(this.state.address, (error, data) => {
-      // console.log(data.results[0].geometry);
+      console.log(data.results);
       // let string = data.results[0].geometry.location.lat;
       this.setState({
         lat_lng:
