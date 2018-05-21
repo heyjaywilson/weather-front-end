@@ -81,8 +81,19 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Powered by Darksky.net
+            powered by darksky.net
           </a>
+
+          <span>
+            designed and developed by{" "}
+            <a
+              href="https://maeganwilson.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              maegan wilson
+            </a>
+          </span>
         </footer>
       </div>
     );

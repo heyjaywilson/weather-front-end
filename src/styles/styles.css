@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   grid-column-gap: 24px;
-  grid-template-areas: "s m m" "f f f";
+  grid-template-areas: "s m m";
 }
 
 .s {
@@ -16,20 +16,23 @@
 }
 .m {
   grid-area: m;
-  padding: 1vh 1vw;
+  padding: 4vh 1vw;
 }
 .f {
-  grid-area: f;
-  text-align: center;
   position: fixed;
+  display: flex;
+  justify-content: space-evenly;
   left: 0;
   bottom: 0;
   width: 100%;
   padding: 5px;
+  margin-top: 5px;
+  background-color: black;
+  color: rgb(181, 181, 181);
 }
 
 a {
-  color: rgb(164, 164, 164);
+  color: rgb(181, 181, 181);
 }
 
 input {
