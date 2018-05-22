@@ -92,3 +92,26 @@ input {
   margin-bottom: 10px;
   color: black;
 }
+
+@media (max-width: 790px) {
+  .App {
+    padding: 1vh 1vw;
+    grid-template-columns: 1fr;
+    grid-template-areas: "s" "m";
+    grid-column-gap: 0;
+  }
+  .a {
+    display: none;
+  }
+  .weather {
+    grid-template-columns: 1fr;
+    grid-template-areas: "w";
+  }
+  input {
+    width: 95vw;
+    padding: 1vh 1vw;
+  }
+  .bttn-small {
+    padding: 10px;
+  }
+}
